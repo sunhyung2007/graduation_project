@@ -29,7 +29,7 @@ public class CheckList_MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.checklist_activity_main);
         //if(db_DEC==null)
-          db_DEC = Room.databaseBuilder(this, AppDataBase.class, "ListDatabase-db").allowMainThreadQueries().build();
+          db_DEC = Room.databaseBuilder(this, AppDataBase.class, "UserDatabase-db").allowMainThreadQueries().build();
         Intent intent=getIntent();
         final String userID =intent.getStringExtra("userID");//유저아이디 받아옴
         //final String userID="idg";
