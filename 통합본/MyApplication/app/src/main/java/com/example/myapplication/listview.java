@@ -1,3 +1,10 @@
+/*
+* 코드명 : listview.java
+* 작성자 : 안한길
+* 작성일 : 2020.06.24
+* 코드 설명 : 체크리스트를 출력하는 페이지 코드 필요한 체크리스트는
+*             유저 아이디와 pk를 사용한다.
+ */
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
