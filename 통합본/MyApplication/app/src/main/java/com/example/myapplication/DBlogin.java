@@ -1,6 +1,8 @@
-/*2020.06.20
-작성자:안한길
-room을 사용한 db 생성
+/*
+* 코드명 : DBlogin.java
+* 작성자 : 안한길
+* 작성일 : 2020.06.20
+* 코드 설명 : room을 사용한 db 생성
  */
 package com.example.myapplication;
 
