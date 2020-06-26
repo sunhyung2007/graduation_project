@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+/***************************************************************
+ * 프로그램명 : activity_login.xml
+ * 작성자 : 2016039050 안한길
+ * 작성일 : 2020.06.20 
+ * 프로그램 설명 :  로그인 화면 디자인
+****************************************************************/
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
