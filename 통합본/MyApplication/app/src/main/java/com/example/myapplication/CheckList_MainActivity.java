@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,13 +17,16 @@ public class CheckList_MainActivity extends AppCompatActivity {
     private RadioButton btn_2016,btn_2017,btn_2018,btn_2019;
     private Button btn_move;
     private String str_result;
-
+    public static AppDataBase db_DEC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_activity_main);
-
-
+        setContentView(R.layout.checklist_activity_main);
+        //if(db_DEC==null)
+          db_DEC = Room.databaseBuilder(this, AppDataBase.class, "ListDatabase-db").allowMainThreadQueries().build();
+        Intent intent=getIntent();
+        final String userID =intent.getStringExtra("userID");//유저아이디 받아옴
+        //final String userID="idg";
         rg_year = findViewById(R.id.rg_year);
         btn_2016 = findViewById(R.id.btn_2016);
         btn_2017 = findViewById(R.id.btn_2017);
@@ -58,18 +62,22 @@ public class CheckList_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(str_result == btn_2016.getText().toString()){
                     Intent intent = new Intent(CheckList_MainActivity.this,yearof2016.class);
+                    intent.putExtra("userID", userID);//아이디
                     startActivity(intent);
                 }
              else if(str_result == btn_2017.getText().toString()){
                     Intent intent = new Intent(CheckList_MainActivity.this,yearof2017.class);
+                    intent.putExtra("userID", userID);//아이디
                     startActivity(intent);
                 }
                 else if(str_result == btn_2018.getText().toString()){
                     Intent intent = new Intent(CheckList_MainActivity.this,yearof2018.class);
+                    intent.putExtra("userID", userID);//아이디
                     startActivity(intent);
                 }
                 else if(str_result == btn_2019.getText().toString()){
                     Intent intent = new Intent(CheckList_MainActivity.this,yearof2019.class);
+                    intent.putExtra("userID", userID);//아이디
                     startActivity(intent);
                 }
                 else{

@@ -35,6 +35,7 @@ public class Menu_MainActivity extends AppCompatActivity {
             case R.id.checklistItem:
                 Intent intent = new Intent(getApplicationContext(), CheckList_MainActivity.class);
                 startActivity(intent);
+                return true;
             case R.id.generalboardItem:
                 intent = new Intent(getApplicationContext(), Board_MainActivity.class);
                 startActivity(intent);

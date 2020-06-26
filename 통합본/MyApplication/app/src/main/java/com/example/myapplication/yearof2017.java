@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,16 +13,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.myapplication.CheckList_MainActivity.db_DEC;
 
 
 public class yearof2017 extends AppCompatActivity {
 
 
-    public static AppDataBase db;
+
     Button btn_sub;
     Button btn_basic;
     Button btn_hard;
@@ -43,13 +42,14 @@ public class yearof2017 extends AppCompatActivity {
     TextView tv_select2;
     TextView tv_select3;
 
-    String id = "idg";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        db = Room.databaseBuilder(this, AppDataBase.class, "ListDatabase-db").allowMainThreadQueries().build();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yearof2016);
-
+        Intent intent=getIntent();
+        final String userID =intent.getStringExtra("userID");//유저아이디 받아옴
         //버튼 및 텍스트뷰, 스크롤뷰로 보게 함
         btn_sub=(Button)findViewById(R.id.btn_sub);
         tv_result = (TextView)findViewById(R.id.tv_result);
@@ -450,7 +450,11 @@ public class yearof2017 extends AppCompatActivity {
                 Intent loginIntent =new Intent(registerAct.this,Login.class);
                 registerAct.this.startActivity(loginIntent);
 */
-                db.userDatabaseDao().insert(new UserDatabase(id,tv_result.getText().toString(),tv_basic.getText().toString(),tv_hard.getText().toString(),tv_nes1.getText().toString(),tv_nes2.getText().toString(),tv_select1.getText().toString(),tv_select2.getText().toString(),tv_select3.getText().toString()));
+                db_DEC.userDatabaseDao().insert(new UserDatabase(userID,tv_result.getText().toString(),tv_basic.getText().toString(),tv_hard.getText().toString(),tv_nes1.getText().toString(),tv_nes2.getText().toString(),tv_select1.getText().toString(),tv_select2.getText().toString(),tv_select3.getText().toString()));
+                Intent mainintent=new Intent(yearof2017.this,Box.class);
+                mainintent.putExtra("userID",userID);//아이디
+
+                yearof2017.this.startActivity(mainintent);
             }
 
         });

@@ -14,6 +14,14 @@ interface UserDatabaseDao {
     @Query("SELECT * FROM UserDatabase")
     List<UserDatabase> getAll();
 
+    @Query("SELECT * FROM UserDatabase where user_id LIKE :userID")
+    List<UserDatabase> find_DEC(String userID);
+    @Query("DELETE  FROM UserDatabase where user_id LIKE :userID AND list_num LIKE :num")
+    void delete_dec(String userID,int num);
+    @Query("update UserDatabase set list_num = :num where i is :pk_i ")
+    void update_num(int num,int pk_i);
+    @Query("SELECT * FROM UserDatabase where user_id LIKE :userID AND i LIKE :pk_i")
+    UserDatabase find_DEC_num(String userID,int pk_i);
     @Insert
     void insert(UserDatabase userDatabase);
 

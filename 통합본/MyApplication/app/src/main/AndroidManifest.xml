@@ -16,14 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CheckList_MainActivity"></activity>
+        <activity android:name=".listview"></activity>
         <activity android:name=".yearof2019"></activity>
         <activity android:name=".yearof2018"></activity>
         <activity android:name=".yearof2017"></activity>
         <activity android:name=".yearof2016"></activity>
-        <activity android:name=".CheckList_MainActivity"></activity>
         <activity android:name=".registerAct"></activity>
         <activity android:name=".Box"></activity>
-        <activity android:name=".DBlogin"></activity>
         <activity android:name=".Menu_MainActivity"></activity>
         <activity android:name=".Board_MainActivity"></activity>
         <activity android:name=".WritePage"></activity>

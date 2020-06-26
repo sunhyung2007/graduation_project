@@ -10,11 +10,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import static com.example.myapplication.CheckList_MainActivity.db_DEC;
+
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+
+import java.util.List;
 
 public class Box extends AppCompatActivity {
 
@@ -26,28 +30,37 @@ public class Box extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_box);
+        setContentView(R.layout.box_activity_box);
         delete_check=false;
        /*
        Intent intent=getIntent();
-        String userID =intent.getStringExtra("userID");유저아이디 받아옴
-       체크리스트에서 선언한 db= Room.databaseBuilder(this,문서데이터베이스.class,"이름")
-                .allowMainThreadQueries().build();
-               list<문서데이터베이스> 변수이름= db.추상변수로 선언한 DAO변수."SELECT * from 문서데이터베이스클래스 where id=userID(받아온 아이디)"
-                for(int i=0;i<list변수이름.size;i++)
-                {
-                    list[i].setText("리스트 1");
-                    list_delete[i].setVisibility(view.VISIBLE);
-                }
-                */
-        list=new Button[3];
-        list[0] = findViewById(R.id.list1);
-        list[1] = findViewById(R.id.list2);
-        list[2] = findViewById(R.id.list3);
+        String userID =intent.getStringExtra("userID");유저아이디 받아옴*/
+        final String userID="idg";
         list_delete=new Button[3];
         list_delete[0] = findViewById(R.id.list1_delete);
         list_delete[1] = findViewById(R.id.list2_delete);
         list_delete[2] = findViewById(R.id.list3_delete);
+        list=new Button[3];
+        list[0] = findViewById(R.id.list1);
+        list[1] = findViewById(R.id.list2);
+        list[2] = findViewById(R.id.list3);
+
+        if(db_DEC==null)
+            db_DEC = Room.databaseBuilder(this, AppDataBase.class, "ListDatabase-db").allowMainThreadQueries().build();
+        final List<UserDatabase> list_DEC= db_DEC.userDatabaseDao().find_DEC(userID);
+        View view = null;
+        for(int i=0;i<3;i++)
+        {
+            if(i<list_DEC.size()) {
+                list[i].setText("리스트 1");
+
+                list_delete[i].setVisibility(view.VISIBLE);
+                db_DEC.userDatabaseDao().update_num(i+1,list_DEC.get(i).getI());
+            }
+        }
+
+
+
         final AlertDialog.Builder bulider=new AlertDialog.Builder(Box.this);
         final AlertDialog.Builder bulider2=new AlertDialog.Builder(Box.this);
         final AlertDialog.Builder bulider3=new AlertDialog.Builder(Box.this);
@@ -66,67 +79,48 @@ public class Box extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(view.getId()==R.id.list1){
-                        if(list_delete[0].getVisibility()==view.VISIBLE){}
-                    //리스트로 이동
-                        /*
-                        * Intent mainintent(변수이름은 자유)=new Intent(Box.this,체크리스트결과창.class);
-                   mainintent.putExtra("userID",userID);//아이디
-                        mainintent.putExtra("받을때 사용할 변수이름",넘길 변수);//어떤 문서인지 구별할 변수
-                    Box.this.startActivity(mainintent);
-                        * */
+                        if(list_delete[0].getVisibility()==view.VISIBLE) {
+                            //리스트로 이동
+                            Intent viewintent = new Intent(Box.this, listview.class);
+                            viewintent.putExtra("userID", userID);//아이디
+                            viewintent.putExtra("pk_i", list_DEC.get(0).getI());
+                            Box.this.startActivity(viewintent);
+                        }
                         else{
-                            //list_delete[0].setVisibility(view.VISIBLE);
-
                     //리스트 추가로 넘어감
-                               /*
-                        * Intent mainintent(변수이름은 자유)=new Intent(Box.this,체크리스트추가.class);
-                   mainintent.putExtra("userID",userID);//아이디
-
-                    Box.this.startActivity(mainintent);
-                        * */
+                         Intent mainintent=new Intent(Box.this, CheckList_MainActivity.class);
+                         mainintent.putExtra("userID",userID);//아이디
+                         Box.this.startActivity(mainintent);
                         }
                     }
                     else if(view.getId()==R.id.list2){
-                        if(list_delete[1].getVisibility()==view.VISIBLE){}
-                            //리스트로 이동
-                           /*
-                        * Intent mainintent(변수이름은 자유)=new Intent(Box.this,체크리스트결과창.class);
-                   mainintent.putExtra("userID",userID);//아이디
-                        mainintent.putExtra("받을때 사용할 변수이름",넘길 변수);//어떤 문서인지 구별할 변수
-                    Box.this.startActivity(mainintent);
-                        * */
+                        if(list_delete[1].getVisibility()==view.VISIBLE) {
+                            Intent viewintent = new Intent(Box.this, listview.class);
+                            viewintent.putExtra("userID", userID);//아이디
+                            viewintent.putExtra("pk_i", list_DEC.get(1).getI());
+                            Box.this.startActivity(viewintent);
+                        }
                         else {
-                                //list_delete[1].setVisibility(view.VISIBLE);
-
                                 //리스트 추가로 넘어감
-                                       /*
-                        * Intent mainintent(변수이름은 자유)=new Intent(Box.this,체크리스트추가.class);
-                   mainintent.putExtra("userID",userID);//아이디
-
-                    Box.this.startActivity(mainintent);
-                        * */
+                            Intent mainintent=new Intent(Box.this, CheckList_MainActivity.class);
+                            mainintent.putExtra("userID",userID);//아이디
+                            Box.this.startActivity(mainintent);
 
                             }
                     }
                     else{
-                        if(list_delete[2].getVisibility()==view.VISIBLE){}
+                        if(list_delete[2].getVisibility()==view.VISIBLE){
                             //리스트로 이동
-                           /*
-                        * Intent mainintent(변수이름은 자유)=new Intent(Box.this,체크리스트결과창.class);
-                   mainintent.putExtra("userID",userID);//아이디
-                        mainintent.putExtra("받을때 사용할 변수이름",넘길 변수);//어떤 문서인지 구별할 변수
-                    Box.this.startActivity(mainintent);
-                        * */
+                            Intent viewintent = new Intent(Box.this, listview.class);
+                            viewintent.putExtra("userID", userID);//아이디
+                            viewintent.putExtra("pk_i", list_DEC.get(0).getI());
+                            Box.this.startActivity(viewintent);
+                        }
                          else {
-                                //list_delete[2].setVisibility(view.VISIBLE);
-
                                 //리스트 추가로 넘어감
-                                       /*
-                        * Intent mainintent(변수이름은 자유)=new Intent(Box.this,체크리스트추가.class);
-                   mainintent.putExtra("userID",userID);//아이디
-
-                    Box.this.startActivity(mainintent);
-                        * */
+                            Intent mainintent=new Intent(Box.this, CheckList_MainActivity.class);
+                            mainintent.putExtra("userID",userID);//아이디
+                            Box.this.startActivity(mainintent);
 
                             }
                     }
@@ -144,8 +138,7 @@ public class Box extends AppCompatActivity {
                         if(delete_check==true){
                             list_delete[0].setVisibility(view.INVISIBLE);
                             //리스트 삭제
-                           /*db.추상변수로 선언한 DAO변수.delete(1번째 리스트);
-                           * */
+                            db_DEC.userDatabaseDao().delete_dec(userID,1);
                             list[0].setText("리스트 추가");
                             bulider3.create().show();
                             delete_check=false;
@@ -159,9 +152,7 @@ public class Box extends AppCompatActivity {
                         if(delete_check==true){
                             list_delete[1].setVisibility(view.INVISIBLE);
                              //리스트 삭제
-                            /*
-                            db.추상변수로 선언한 DAO변수.delete(1번째 리스트);
-                             * */
+                            db_DEC.userDatabaseDao().delete_dec(userID,2);
                               list[1].setText("리스트 추가");
                             bulider3.create().show();
                             delete_check=false;
@@ -174,9 +165,7 @@ public class Box extends AppCompatActivity {
                         if(delete_check==true){
                             list_delete[2].setVisibility(view.INVISIBLE);
                             //리스트 삭제
-                            /*
-                            db.추상변수로 선언한 DAO변수.delete(1번째 리스트);
-                             * */
+                            db_DEC.userDatabaseDao().delete_dec(userID,3);
                              list[2].setText("리스트 추가");
                             bulider3.create().show();
                             delete_check=false;

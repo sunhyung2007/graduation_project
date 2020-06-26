@@ -14,8 +14,9 @@ import java.util.List;
 public class UserDatabase {
     @PrimaryKey(autoGenerate = true)
     @NotNull
-    private  int i = 0;
+    private  int i ;
     private String user_id;
+    private int list_num;
     private String sub;
     private String basic;
     private String hard;
@@ -46,6 +47,7 @@ public class UserDatabase {
         this.select1 = select1;
         this.select2 = select2;
         this.select3 = select3;
+        this.list_num=0;
     }
 
     public String getUser_id() {
@@ -126,5 +128,13 @@ public class UserDatabase {
 
     public void setI(int i) {
         this.i = i;
+    }
+
+    public int getList_num() {
+        return list_num;
+    }
+
+    public void setList_num(int list_num) {
+        this.list_num = list_num;
     }
 }
