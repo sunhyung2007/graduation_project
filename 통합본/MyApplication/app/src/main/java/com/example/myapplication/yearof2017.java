@@ -1,5 +1,9 @@
 package com.example.myapplication;
-
+/*
+ * 작성자 : 2016039059 김선형
+ * 수정일 : 2020.06.26
+ * 프로그램명 : 입학연도 2017년 체크리스트
+ ***************************************/
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
