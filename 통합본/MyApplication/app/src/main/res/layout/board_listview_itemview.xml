@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+/***************************************************************
+ * 프로그램명 : board_listview_itemview
+ * 작성자 : 2016039038 신동규
+ * 작성일 : 2020.06.20 ~ 2020.06.20
+ * 프로그램 설명 : 게시글 열람 화면
+****************************************************************/
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+/***************************************************************
+ * 프로그램명 : board_write_page
+ * 작성자 : 2016039038 신동규
+ * 작성일 : 2020.06.20 ~ 2020.06.20
+ * 프로그램 설명 : 게시글 작성 화면
+****************************************************************/
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
