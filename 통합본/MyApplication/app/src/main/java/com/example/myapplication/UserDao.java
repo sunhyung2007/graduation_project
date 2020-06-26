@@ -1,6 +1,9 @@
-/*2020.06.20
-작성자:안한길
-userinfo table에 쓰일 명령어 선언
+
+/*
+* 코드명 : UserDao.java
+* 작성자 : 안한길
+* 작성일 : 2020.06.20
+* 코드 설명: 로그인에 사용될 쿼리문을 작성한 코드
  */
 package com.example.myapplication;
 
