@@ -1,6 +1,9 @@
-/*2020.06.20
-작성자:안한길
-Userinfo 클래스를 선언하고 db로 사용
+
+/*
+* 코드명 : Userinfo.java
+* 작성자 : 안한길
+* 작성일 : 2020.06.20
+* 코드 설명: 유저의 정보를 저장할 테이블 속성 코드
  */
 package com.example.myapplication;
 
